@@ -1,0 +1,39 @@
+ARCH=sn98601
+
+CC=arm-linux-gcc
+LD=arm-linux-gcc
+STRIP=arm-linux-strip
+
+CFLAGS +=  -Wall -pipe -std=gnu99 
+CFLAGS += -Iinclude/ \
+		-I./include/curl \
+	 	-I./camera_src 	\
+	 	-I./camera_src/libASE/include \
+	 	-I./camera_src/P2P/include/PPPP/ \
+	 	-I./mosquitoo-1.2.3  \
+	 	-DLINUX \
+	 	-D_LITTLE_ENDIAN \
+	 	
+LDFLAGS += -Wl,-rpath=./lib \
+		-L./mosquitoo-1.2.3/lib \
+		-L./camera_src/libASE/lib/$(ARCH) \
+		-L./lib/$(ARCH) \
+		-L./camera_src/P2P/lib/$(ARCH) \
+		-lmosquitto -lPPPP_API -ldl -lpthread -lcrypto -lssl -lm -lrt -lc -lstdc++
+	
+LIBS += ./lib/$(ARCH)/libcurl.a \
+		./camera_src/P2P/lib/$(ARCH)/libPPPP_API.a \
+		./camera_src/libASE/lib/$(ARCH)/libAES_API.a 
+
+DEBUG += -DDEBUG
+
+SRC += ipc_handler.c ./camera_src/camera.c ./camera_src/fifo.c ./camera_src/sysdeps_linux.c
+
+all: ipc_handler
+
+ipc_handler: $(SRC)
+	$(CC) -g $(SRC) $(CFLAGS)  $(LIBS) $(LDFLAGS) $(DEBUG) -o $@ -DLINUX 
+
+clean:
+	rm ipc_handler
+

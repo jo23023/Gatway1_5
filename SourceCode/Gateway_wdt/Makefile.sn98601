@@ -1,0 +1,50 @@
+CROSS		?= arm-linux-
+CC			= $(CROSS)gcc
+STRIP		= $(CROSS)strip
+
+PWD			:= $(shell pwd)
+INSTALL_DIR	?= $(PWD)
+
+CFLAGS		:=
+INC			:=
+LIB			:=
+
+TARGET		?= gateway_wdt
+OBJ			?= gateway_wdt.o
+
+DEBUG += -DDEBUG
+
+# Hide compile massage default, view message by "make V=1"
+PARAM		= $(V)
+
+.PHONY: all clean distclean install
+
+# $()
+all: $(OBJ)
+	@echo -n "[MAKE]"
+ifeq ($(PARAM), 1)
+	$(CC) $(OBJ) $(CFLAGS) $(INC) $(LIB) $(DEBUG) -o $(TARGET)
+	$(STRIP) $(TARGET)
+else
+	@$(CC) $(OBJ) $(CFLAGS) $(INC) $(LIB) $(DEBUG) -o $(TARGET)
+	@$(STRIP) $(TARGET)
+endif
+	@echo " OK"
+
+%.o: %.c
+ifeq ($(PARAM), 1)
+	$(CC) $< $(CFLAGS) $(INC) $(LIB) -c
+else
+	@$(CC) $< $(CFLAGS) $(INC) $(LIB) -c
+endif
+
+clean:
+	@echo -n "[CLEAN]"
+	@-rm -rf *.o
+	@-rm -rf $(TARGET)
+	@echo " OK"
+
+install:
+	@echo -n "[INSTALL]"
+	@echo " OK"
+

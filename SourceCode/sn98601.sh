@@ -1,0 +1,1 @@
+source build_gateway.sh sn98601 all

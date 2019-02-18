@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1452051181 source:/home/jsw/Code/Test4/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+

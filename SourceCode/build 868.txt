@@ -1,0 +1,6 @@
+./Test4
+ gedit update_script &
+( 改size)
+
+/mkrootfs.sh 165 (optional)
+600k 才是有mcu

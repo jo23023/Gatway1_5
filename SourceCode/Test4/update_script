@@ -1,0 +1,5 @@
+---Gateway FW Update Script---
+update:sdcard/ceres,458904
+kill:gateway_wdt
+update:sdcard/gateway_wdt,14868
+update:sdcard/update,8244

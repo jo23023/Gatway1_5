@@ -1,0 +1,32 @@
+ARCH=sn98601
+
+CC=arm-linux-gcc
+LD=arm-linux-gcc
+STRIP=arm-linux-strip
+
+CFLAGS +=  -Wall -pipe -std=gnu99 
+CFLAGS += -Iinclude/ \
+		-I./include/curl \
+	 	-I./mosquitoo-1.2.3  \
+	 	-DLINUX \
+	 	-D_LITTLE_ENDIAN \
+	 	
+LDFLAGS += -Wl,-rpath=./lib \
+		-L./mosquitoo-1.2.3/lib \
+		-L./lib/$(ARCH) \
+		-lmosquitto -ldl -lpthread -lcrypto -lssl -lm -lrt -lc -lstdc++
+	
+LIBS += ./lib/$(ARCH)/libcurl.a \
+
+DEBUG += -DDEBUG
+
+SRC += ceres_util.c
+
+all: ceres_util
+
+ceres_util: $(SRC)
+	$(CC) -g $(SRC) $(CFLAGS)  $(LIBS) $(LDFLAGS) $(DEBUG) -o $@ -DLINUX 
+
+clean:
+	rm ceres_util
+
