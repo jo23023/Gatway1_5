@@ -1,0 +1,12 @@
+-- Persistent Data
+local multiRefObjects = {
+
+} -- multiRefObjects
+local obj1 = {
+	["password"] = "123456";
+	["apichecksum"] = "90a78310254e";
+	["did"] = "CHXX-000411-UNYGL";
+	["license"] = "RKVRXS";
+	["initstring"] = "ECGBFFBJKAIEGHJAEBHLFGEMHLNBHCNIGEFCBNCIBIJALMLFCFAPCHODHOLCJNKIBIMCLDCNOBMOAKDMJGNMIJBJML";
+}
+return obj1

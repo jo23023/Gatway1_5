@@ -1,0 +1,272 @@
+{
+    "method": "devicejsontree",
+    "callid": 1403163650062,
+    "result": {
+        "gateway": {
+            "api_checksum": "SQNHGJ:StArXnEt",
+            "admin_password": "123456",
+            "gateway_password": "123456",
+            "luascript": "core.lua",
+            "gateway_app_version": "V1.4.3",
+            "did": "SNCU-000075-VCEVJ",
+            "initstring": "AACCEIAFKDNKHMNDEFCJFLBAGAMIDJMOCNBJBECHFPMIPILBGHACGKOGCCKHMNOBAEJPLADGKEIIAMDMJGJNIPEIMELOAEGFBLDHGOANJKLK"
+        },
+        "item": {
+            "1": {
+                "name": "Group All",
+                "fullmodelno": "JSW-Group-0001",
+                "id": "1",
+                "child": {
+                    "2": [],
+                    "10": []
+                },
+                "bind": "itemrepo=1"
+            },
+            "2": {
+                "name": "Group Default",
+                "fullmodelno": "JSW-Group-0001",
+                "id": "2",
+                "child": {
+                    "3": [],
+                    "4": [],
+                    "5": [],
+                    "6": [],
+                    "7": [],
+                    "8": [],
+                    "9": [],
+                    "11": [],
+                    "15": [],
+                    "16": [],
+                    "18": [],
+                    "19": [],
+                    "20": []
+                },
+                "bind": "itemrepo=2"
+            },
+            "3": {
+                "seat": "seat",
+                "tosaveintodb": true,
+                "busname": "p2p",
+                "parent": "2",
+                "name": "Camera3",
+                "fullmodelno": "JSW-Camera-0001",
+                "bind": "p2p=PTP-000044-ECYSJ",
+                "password": "12345",
+                "did": "PTP-000044-ECYSJ",
+                "id": "3"
+            },
+            "4": {
+                "user": "admin",
+                "seat": "seat",
+                "tosaveintodb": true,
+                "id": "4",
+                "busname": "p2p",
+                "parent": "1",
+                "name": "cam4",
+                "fullmodelno": "JSW-Camera-0001",
+                "bind": "p2p=VSTC350448DJWBJ",
+                "password": "888888",
+                "did": "VSTC350448DJWBJ"
+            },
+            "5": {
+                "busname": "ttyS0",
+                "id": "5",
+                "bind": "ttyS0=433/16677624/5",
+                "fullmodelno": "STARX-GateMaglock-0001",
+                "parent": "2",
+                "nodeid": "5",
+                "tosaveintodb": true,
+                "name": "GateLock5"
+            },
+            "6": {
+                "busname": "ttyS0",
+                "id": "6",
+                "bind": "ttyS0=433/16677624/6",
+                "fullmodelno": "STARX-GateMaglock-0001",
+                "parent": "2",
+                "nodeid": "6",
+                "tosaveintodb": true,
+                "name": "GateLock6"
+            },
+            "8": {
+                "busname": "ttyS0",
+                "id": "8",
+                "bind": "ttyS0=433/15354175/8",
+                "fullmodelno": "STARX-PIR-0001",
+                "parent": "2",
+                "nodeid": "8",
+                "tosaveintodb": true,
+                "name": "PIR8"
+            },
+            "9": {
+                "busname": "ttyS0",
+                "id": "9",
+                "bind": "ttyS0=433/15354175/9",
+                "fullmodelno": "STARX-PIR-0001",
+                "parent": "2",
+                "nodeid": "9",
+                "tosaveintodb": true,
+                "name": "PIR9"
+            },
+            "10": {
+                "busname": "ttyS0",
+                "id": "10",
+                "bind": "ttyS0=433/15354175/10",
+                "fullmodelno": "JSW-RemoteKey-B001",
+                "parent": "2",
+                "nodeid": "10",
+                "tosaveintodb": true,
+                "name": "RemoteKey10"
+            },
+            "11": {
+                "busname": "ttyS0",
+                "id": "11",
+                "bind": "ttyS0=433/4800/11",
+                "fullmodelno": "JSW-Siren-B001",
+                "parent": "2",
+                "nodeid": "11",
+                "tosaveintodb": true,
+                "name": "MySiron11"
+            },
+            "12": {
+                "busname": "ttyS0",
+                "id": "12",
+                "bind": "ttyS0=433/4800/12",
+                "fullmodelno": "JSW-Siren-B001",
+                "parent": "2",
+                "nodeid": "12",
+                "tosaveintodb": true,
+                "name": "MySiron12"
+            },
+            "13": {
+                "busname": "ttyS0",
+                "id": "13",
+                "bind": "ttyS0=433/4800/13",
+                "fullmodelno": "JSW-Slot-B084",
+                "parent": "2",
+                "nodeid": "13",
+                "tosaveintodb": true,
+                "name": "MySlot13"
+            },
+            "14": {
+                "busname": "ttyS0",
+                "id": "14",
+                "bind": "ttyS0=433/4800/14",
+                "fullmodelno": "JSW-Slot-B084",
+                "parent": "2",
+                "nodeid": "14",
+                "tosaveintodb": true,
+                "name": "MySlot14"
+            }
+        },
+        "model": {
+            "JSW-Camera-0001": {
+                "brand": "JSW",
+                "type": "Camera",
+                "name": "Camera",
+                "fullmodelno": "JSW-Camera-0001",
+                "control":["ARM","Panic","Record","Control"],
+                "command": [
+                    {
+                        "value": [
+                            "View",
+                            "Record"
+                        ],
+                        "type": "OpenCamera",
+                        "name": "OpenCamera"
+                    }
+                ],
+                "icon": "Camera",
+                "model": "0001"
+            },
+            "STARX-GateMaglock-0001": {
+                "brand": "STARX",
+                "type": "Contact",
+                "name": "GateMaglock",
+                "fullmodelno": "STARX-GateMaglock-0001",
+                "control": ["ARM"],
+                "command": [
+                    {
+                        "value": [
+                            "On",
+                            "Off"
+                        ],
+                        "type": "OnOff",
+                        "name": "OnOff"
+                    }
+                ],
+                "mode": "Sender",
+                "icon": "GateMaglock",
+                "model": "0001"
+            },
+            "JSW-Group-0001": {
+                "brand": "JSW",
+                "type": "Group",
+                "name": "Group",
+                "fullmodelno": "JSW-Group-0001",
+                "command": [],
+                "state": [],
+                "icon": "Group",
+                "model": "0001"
+            },
+            "STARX-PIR-0001": {
+                "brand": "STARX",
+                "type": "Switch",
+                "name": "PIR",
+                "fullmodelno": "STARX-PIR-0001",
+                "control": ["ARM"],
+                "command": [
+                    {
+                        "value": [
+                            "Open", "Close"
+                        ],
+                        "type": "OpenClose",
+                        "name": "OpenClose"
+                    }
+                ],
+                "mode": "Sender",
+                "icon": "Pir",
+                "model": "0001"
+            },
+            "JSW-RemoteKey-B001": {
+                "fullmodelno": "JSW-RemoteKey-B001",
+                "brand": "JSW",
+                "name": "RemoteKey",
+                "model": "B001",
+                "icon": "RemoteKey",
+                "type": "RemoteKey",
+                "mode": "RemoteKey",
+                "control": [],
+                "command": [
+                    {"name":"RemoteKey", "type":"RemoteKey", "value":["Lock", "Unlock", "ARM_On", "ARM_Off"]}
+                ]
+            },
+            "JSW-Siren-B001": {
+                "fullmodelno":"JSW-Siren-B001",
+                "brand": "JSW",
+                "name": "Siren",
+                "model": "B001",
+                "icon": "Siren",
+                "type": "Switch",
+                "mode": "Receiver",
+                "control": ["ARM", "Panic"],
+                "command": [
+                    {"name":"OnOff", "type":"OnOff", "value":["On", "Off"]}
+                ]
+            },
+            "JSW-Slot-B084":{
+                "fullmodelno":"JSW-Slot-B084",
+                "brand": "JSW",
+                "name": "Slot",
+                "model": "B084",
+                "icon": "Slot",
+                "type": "Switch",
+                "mode": "Receiver",
+                "control": ["Control"],
+                "command": [
+                  {"name":"OnOff", "type":"OnOff", "value":["On", "Off"]}
+                ]
+            }
+        }
+    }
+}

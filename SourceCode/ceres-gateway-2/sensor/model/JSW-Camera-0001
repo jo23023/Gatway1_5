@@ -1,0 +1,12 @@
+{
+    "fullmodelno": "JSW-Camera-0001",
+    "brand": "JSW",
+    "name": "Camera",
+    "model": "0001",
+    "icon": "Camera",
+    "type": "Camera",
+    "control":["ARM","Panic","Record","Control"],
+    "command": [
+      {"name":"OpenCamera", "type":"OpenCamera", "value":["View", "Record"]}
+    ],
+}

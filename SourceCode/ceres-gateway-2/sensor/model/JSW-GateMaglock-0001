@@ -1,0 +1,14 @@
+{
+    "fullmodelno":"JSW-GateMaglock-0001",
+    "brand": "JSW",
+    "name": "DoorSensor",
+    "model": "0001",
+    "icon": "GateMaglock",
+    "type": "Contact",
+    "mode": "Sender",
+    "control": ["ARM"],
+    "command": [
+      {"name":"OpenClose", "type":"OpenClose", "value":["Open", "Close"]},
+     {"name":"OpenClose2", "type":"OpenClose", "value":["Open2", "Close2"]}
+    ]
+}

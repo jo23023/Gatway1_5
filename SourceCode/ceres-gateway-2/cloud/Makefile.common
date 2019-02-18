@@ -1,0 +1,9 @@
+CFLAGS=-Iinclude -I../install/include
+LDFLAGS=-Wl,-rpath=./lib/$(ARCH) -Llib/$(ARCH) -lcurl -lpthread -lrt -lPPPP_API -ldl
+
+SRC=  md5_util.c \
+        ceres.c ceres_util.c\
+         AES_EnDe.c AES_utils.c \
+        jsw_protocol.c testRFMain.c \
+        jsw_rf_api.h rf_module.c rf_module.h
+        

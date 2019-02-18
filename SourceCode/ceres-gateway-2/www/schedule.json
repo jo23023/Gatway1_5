@@ -1,0 +1,38 @@
+{
+    "method": "getVirtualDevice",
+    "callid": 1403163650062,
+    "result":
+    {
+        "id_11":
+        [
+            {
+                "week": {
+                    "tue": true,
+                    "sun": true,
+                    "mon": true
+                },
+                "enable": "yes",
+                "action": "OnOff",
+                "value": "On",
+                "duration": {
+                    "On": "00:00",
+                    "Off": "05:00"
+                }
+            },
+
+            {
+                "week": {
+                    "tue": true,
+                    "thr": true
+                },
+                "enable": "no",
+                "action": "OnOff",
+                "value": "On",
+                "duration": {
+                    "On": "00:10",
+                    "Off": "07:00"
+                }
+            }
+        ]
+    }
+}

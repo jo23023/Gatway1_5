@@ -1,0 +1,13 @@
+{
+    "fullmodelno":"JSW-Slot-B084",
+    "brand": "JSW",
+    "name": "PowerSwitch",
+    "model": "B084",
+    "icon": "Slot",
+    "type": "Switch",
+    "mode": "Receiver",
+    "control": ["Control"],
+    "command": [
+      {"name":"OnOff", "type":"OnOff", "value":["On", "Off"]}
+    ]
+}

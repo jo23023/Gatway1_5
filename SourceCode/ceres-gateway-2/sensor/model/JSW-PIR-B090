@@ -1,0 +1,13 @@
+{
+    "fullmodelno": "JSW-PIR-B090",
+    "brand": "JSW",
+    "name": "MotionSensor",
+    "model": "B090",
+    "icon": "Pir",
+    "type": "Switch",
+    "mode": "Sender",
+    "control": ["ARM"],
+    "command": [
+            {"name":"OpenClose", "type":"OpenClose", "value":["Open", "Close"]}
+    ]
+}

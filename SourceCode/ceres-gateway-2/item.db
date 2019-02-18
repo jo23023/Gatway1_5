@@ -1,0 +1,39 @@
+-- Persistent Data
+local multiRefObjects = {
+
+} -- multiRefObjects
+local obj1 = {
+	["1"] = {
+		["name"] = "Group All";
+		["fullmodelno"] = "JSW-Group-0001";
+		["id"] = "1";
+		["bind"] = "itemrepo=1";
+		["child"] = {
+			["2"] = {
+			};
+		};
+	};
+	["2"] = {
+		["name"] = "Group Default";
+		["fullmodelno"] = "JSW-Group-0001";
+		["id"] = "2";
+		["bind"] = "itemrepo=2";
+		["child"] = {
+			["15"] = {
+			};
+			["16"] = {
+			};
+			["20"] = {
+			};
+			["19"] = {
+			};
+			["4"] = {
+			};
+			["7"] = {
+			};
+			["18"] = {
+			};
+		};
+	};
+}
+return obj1

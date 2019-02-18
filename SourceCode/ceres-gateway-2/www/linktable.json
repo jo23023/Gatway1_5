@@ -1,0 +1,84 @@
+{
+    "method": "getLinktable",
+    "callid": 1403163650062,
+    "result": {
+        "id_5_action_OpenClose_value_Open": {
+            "id_5_8": {
+                "target": {
+                    "name": "门铃",
+                    "id": "8",
+                    "value": "On",
+                    "action": "Trigger",
+                    "bind": "ttyS0=433/2357206976/1",
+                    "fullmodelno": "STARX-PIR-0001"
+                },
+                "source": {
+                    "name": "门窗报警",
+                    "id": "5",
+                    "value": "Open",
+                    "action": "OpenClose",
+                    "bind": "ttyS0=433/3387458107/0"
+                },
+                "key": "id_5_action_OpenClose_value_Open"
+            },
+            "id_5_4": {
+                "target": {
+                    "view": true,
+                    "name": "cam338",
+                    "id": "4",
+                    "record": true,
+                    "action": "OpenCamera",
+                    "bind": "p2p=CHXX-000338-TBZRJ",
+                    "fullmodelno": "JSW-Camera-0001"
+                },
+                "source": {
+                    "name": "门窗报警",
+                    "id": "5",
+                    "value": "Open",
+                    "action": "OpenClose",
+                    "bind": "ttyS0=433/3387458107/0"
+                },
+                "key": "id_5_action_OpenClose_value_Open"
+            }
+        },
+        "id_6_action_OpenClose_value_Open": {
+            "id_6_4": {
+                "target": {
+                    "view": true,
+                    "name": "cam338",
+                    "id": "4",
+                    "record": true,
+                    "action": "OpenCamera",
+                    "bind": "p2p=CHXX-000338-TBZRJ",
+                    "fullmodelno": "JSW-Camera-0001"
+                },
+                "source": {
+                    "name": "按钮",
+                    "id": "6",
+                    "value": "Open",
+                    "action": "OpenClose",
+                    "bind": "ttyS0=433/694291512/0"
+                },
+                "key": "id_6_action_OpenClose_value_Open"
+            },
+            "id_6_8": {
+                "target": {
+                    "name": "门铃",
+                    "id": "8",
+                    "value": "On",
+                    "action": "Trigger",
+                    "bind": "ttyS0=433/2357206976/1",
+                    "fullmodelno": "STARX-PIR-0001"
+                },
+                "source": {
+                    "name": "按钮",
+                    "id": "6",
+                    "value": "Open",
+                    "action": "OpenClose",
+                    "bind": "ttyS0=433/694291512/0"
+                },
+                "key": "id_6_action_OpenClose_value_Open"
+            }
+        }
+    }
+}

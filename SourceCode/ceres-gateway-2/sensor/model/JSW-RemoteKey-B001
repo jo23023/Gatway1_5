@@ -1,0 +1,13 @@
+{
+    "fullmodelno": "JSW-RemoteKey-B001",
+    "brand": "JSW",
+    "name": "RemoteKey",
+    "model": "B001",
+    "icon": "RemoteKey",
+    "type": "RemoteKey",
+    "mode": "Sender",
+    "control": [],
+    "command": [
+      {"name":"RemoteKey", "type":"RemoteKey", "value":["Lock", "Unlock", "ARM_On", "ARM_Off"]}
+    ]
+}

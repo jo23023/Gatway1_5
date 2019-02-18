@@ -1,0 +1,159 @@
+{
+    "method": "getVirtualDevice",
+    "callid": 1403163650062,
+    "result": {
+        "98": {
+            "items": {
+                "9": [
+                "View",
+                "Record",
+                "OpenCamera"
+                ],
+                "10": [
+                "View",
+                "Record",
+                "OpenCamera"
+                ]
+            },
+            "bind": "virtualdevice=101",
+            "fullmodelno": "JSW-VirtualDevice-001",
+            "value": "On",
+            "id": "98",
+            "name": "IPCam"
+        },
+        "99": {
+            "items": {
+                "10": [
+                "View",
+                "Record",
+                "OpenCamera"
+                ],
+                "11": [
+                "On",
+                "Off",
+                "Trigger"
+                ]
+            },
+            "bind": "virtualdevice=101",
+            "fullmodelno": "JSW-VirtualDevice-001",
+            "value": "On",
+            "id": "99",
+            "name": "Panic"
+        },
+        "101": {
+            "items": {
+                "9": [
+                "View",
+                "Record",
+                "OpenCamera"
+                ],
+                "7": [
+                "On",
+                "Off",
+                "OnOff"
+                ]
+            },
+            "bind": "virtualdevice=101",
+            "fullmodelno": "JSW-VirtualDevice-001",
+            "value": "On",
+            "id": "101",
+            "name": "Group1",
+            "index": "1"
+        },
+        "102": {
+            "items": {
+                "4": [
+                "View",
+                "Record",
+                "OpenCamera"
+                ],
+                "9": [
+                "View",
+                "Record",
+                "OpenCamera"
+                ]
+            },
+            "bind": "virtualdevice=102",
+            "fullmodelno": "JSW-VirtualDevice-001",
+            "value": "On",
+            "id": "102",
+            "name": "Group2",
+            "index": "2"
+        },
+        "103": {
+            "items": {
+                "4": [
+                "View",
+                "Record",
+                "OpenCamera"
+                ],
+                "7": [
+                "View",
+                "Record",
+                "OpenCamera"
+                ]
+            },
+            "bind": "virtualdevice=102",
+            "fullmodelno": "JSW-VirtualDevice-001",
+            "value": "On",
+            "id": "103",
+            "name": "Group3",
+            "index": "3"
+        },
+        "104": {
+            "items": {
+                "4": [
+                "View",
+                "Record",
+                "OpenCamera"
+                ],
+                "7": [
+                "View",
+                "Record",
+                "OpenCamera"
+                ]
+            },
+            "bind": "virtualdevice=102",
+            "fullmodelno": "JSW-VirtualDevice-001",
+            "value": "On",
+            "id": "104",
+            "name": "Group4",
+            "index": "4"
+        },
+        "105": {
+            "items": {
+            "9": [
+                "View",
+                "Record",
+                "OpenCamera"
+                ],
+            "7": [
+            "View",
+            "Record",
+            "OpenCamera"
+            ]
+            },
+            "bind": "virtualdevice=102",
+            "fullmodelno": "JSW-VirtualDevice-001",
+            "value": "On",
+            "id": "105",
+            "name": "Group5",
+            "index": "5"
+        },
+        "107": {
+            "items": {
+                "9": [
+                "View",
+                "Record",
+                "OpenCamera"
+                ]
+            },
+            "bind": "virtualdevice=103",
+            "fullmodelno": "JSW-VirtualDevice-001",
+            "value": "Off",
+            "id": "107",
+            "name": "Group7",
+            "index": "7"
+        }
+    }
+}

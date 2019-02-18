@@ -1,0 +1,2 @@
+CFLAGS=-Iinclude -I../install/include
+LDFLAGS=-Wl,-rpath=./lib/$(ARCH) -Llib/$(ARCH) -lcurl -lpthread -lrt -lPPPP_API -ldl

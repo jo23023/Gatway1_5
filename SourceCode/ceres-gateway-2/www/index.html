@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <title>CERES</title>
+
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="css/grids-responsive-old-ie-min.css">
+
+    <![endif]-->
+
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="css/grids-responsive-min.css">
+    <!--<![endif]-->
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="css/marketing-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="css/jsw.css">
+    <link rel="stylesheet" href="css/spin.circle.css">
+    <!--<![endif]-->
+
+    <link rel="stylesheet" href="css/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/datepickr.css"/>
+    <link rel="stylesheet" type="text/css" href="css/ui.theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.ptTimeSelect.css"/>
+    <link rel="stylesheet" type="text/css" href="css/toastr.css"/>
+    <link rel="stylesheet" type="text/css" href="css/mobiscroll.custom-2.6.2.min.css"/>
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script src="js/jquery.min.js"></script>
+
+    <script src="js/scaleApp.full.js"></script>
+    <script src="js/watch.min.js"></script>
+    <script src="js/handlebars-v1.3.0.js"></script>
+    <script src="js/helpers.js"></script>
+
+    <!--<script src="js/picker.js"></script>-->
+    <!--<script src="js/picker.date.js"></script>-->
+    <script src="js/datepickr.min.js"></script>
+    <script src="js/jquery.ptTimeSelect.js"></script>
+    <script src="js/toastr.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="js/mobiscroll.custom-2.6.2.min.js"></script>
+
+
+    <script src="app/util.js"></script>
+    <script src="app/init.js"></script>
+    <script src="app/jsw.i18n.js"></script>
+    <script src="app/statemachine.js"></script>
+    <script src="app/gateway_list_page.js"></script>
+
+    <script src="app/gateway.js"></script>
+
+    <script src="app/gateway_wizard.js"></script>
+    <script src="app/status_page.js"></script>
+    <script src="app/add_device.js"></script>
+    <script src="app/control_page.js"></script>
+    <script src="app/setting_page.js"></script>
+    <script src="app/scenario_page.js"></script>
+    <script src="app/remote_controller_page.js"></script>
+    <script src="app/event_page.js"></script>
+
+    <script>
+        var isMobile = {
+            Android: function () {
+                return navigator.userAgent.match(/Android/i);
+            },
+            BlackBerry: function () {
+                return navigator.userAgent.match(/BlackBerry/i);
+            },
+            iOS: function () {
+                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            },
+            Opera: function () {
+                return navigator.userAgent.match(/Opera Mini/i);
+            },
+            Windows: function () {
+                return navigator.userAgent.match(/IEMobile/i);
+            },
+            any: function () {
+                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+            }
+        };
+
+/*        if (isMobile.any()) {
+            console.log("this is mobile browser");
+
+            var regScript = document.createElement("script");
+            regScript.setAttribute("src", "js/cordova.js");
+            document.getElementsByTagName("head")[0].appendChild(regScript);
+
+            var pluginScript = document.createElement("script");
+            pluginScript.setAttribute("src", "js/EchoPlugin.js");
+            document.getElementsByTagName("head")[0].appendChild(pluginScript);
+
+        } else {
+            console.log("=============> this is desktop browser");
+        }*/
+
+    </script>
+</head>
+
+<body>
+
+<div id="main_content"></div>
+</div>
+
+<script>
+//    var current = "starter";
+    //        var current = "gateway_wizard";
+    //    var current = "add_device";
+            var current = "gateway_list_page";
+    //    var current = "remote_controller_page";
+    //    var current = "remote_controller_page_receiver";
+//    var current = "control_page_starter";
+
+</script>
+</body>
+
+</html>

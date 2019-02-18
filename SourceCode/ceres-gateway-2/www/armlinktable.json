@@ -1,0 +1,42 @@
+{
+    "method": "getVirtualDevice",
+    "callid": 1403163650062,
+    "result": {
+        "id": "97",
+        "name": "MyArm",
+        "enable": "yes",
+        "source":{
+            "5":{
+                "name": "GateLock5",
+                "id": "5",
+                "value": "Open",
+                "action": "OpenClose",
+                "bind": "ttyS0=433/16677624/5"
+            },
+            "8":{
+                "name": "PIR8",
+                "id": "8",
+                "value": "Open",
+                "action": "OpenClose",
+                "bind": "ttyS0=433/15354175/8"
+            }
+        },
+        "target":{
+            "3":{
+                "view": true,
+                "name": "Camera3",
+                "id": "6",
+                "record": true,
+                "action": "OpenCamera",
+                "bind": "p2p=PTP-000044-ECYSJ"
+            },
+            "12":{
+                "name": "MySiron12",
+                "id": "9",
+                "value": "On",
+                "action": "MySiron12",
+                "bind": "ttyS0=433/4800/12"
+                }
+        }
+    }
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scale App Test</title>
+    <script src="js/scaleApp.full.js"></script>
+    <script src="js/watch.min.js"></script>
+</head>
+
+<script>
+
+    var i18n = null;
+
+    var MySandbox = function (core, instanceId, options, moduleId) {
+
+        // define your API
+        this.myFooProperty = "bar";
+
+        // e.g. provide the Mediator methods 'on', 'emit', etc.
+        core._mediator.installTo(this);
+
+        // ... or define your custom communication methods
+        this.myEmit = function (channel, data) {
+            core.emit(channel + '/' + instanceId, data);
+        };
+
+        // maybe you'd like to expose the instance ID
+        this.id = instanceId;
+
+        return this;
+    };
+
+    var core = new scaleApp.Core(MySandbox);
+
+    scaleApp.plugins.state(core);
+    scaleApp.plugins.i18n(core);
+
+    i18n = core.i18n;
+
+    function cb() {
+        console.log("cb");
+    }
+    function cb1() {
+        console.log("cb1");
+    }
+    function cb2() {
+        console.log("cb2");
+    }
+    function cb3() {
+        console.log("cb3");
+    }
+
+    var sm = new core.StateMachine({
+        start: "a",
+        states: {
+            a: { enter: function (ev) {
+                console.log("entering state " + ev.to);
+            }, leave: function (ev) {
+                console.log("leaving state from " + ev.from);
+            }
+            },
+            b: { enter: function (ev) {
+                console.log("entering b state from " + ev.from);
+            }, leave: function (ev) {
+                console.log("leaving state " + ev.from);
+            }
+            },
+            c: { enter: [cb1, cb2], leave: cb3                                   },
+            fatal: { enter: function () {
+                console.error("something went wrong");
+            }}
+        },
+        transitions: {
+            x: { from: "a", to: "b"     },
+            y: { from: ["b", "c"], to: "c"     },
+            uups: { from: "*", to: "fatal" }
+        }
+    });
+
+    //    sm.addState("d", { enter: function () { /*..*/
+    //    } });  // add an additional state
+    //    sm.addState({ y: {}, z: { enter: cb } });          // or add multiple states
+    //
+    //    sm.addTransition("t", { from: "b", to: "d" });     // add a transition
+    //    sm.can("t");   // false because 'a' is current state
+    //    sm.can("x");   // true
+
+    sm.onLeave("a", function (transition, eventName, next) {
+        console.log(transition)
+        console.log(eventName);
+        next();
+    });
+
+    sm.onEnter("b", function (transition, eventName, next) {
+        console.log("onEnter b:" + transition)
+        console.log(eventName)
+        next();
+    });
+
+    sm.fire("x");
+    console.log(sm.current);     // b
+</script>
+
+<script>
+    //Test for watch.js
+    //defining our object however we like
+    var ex1 = {
+        attr1: "initial value of attr1",
+        attr2: "initial value of attr2"
+    };
+
+    //defining a 'watcher' for an attribute
+    watch(ex1, "attr1", function () {
+        alert("attr1 changed!");
+    });
+
+    //when changing the attribute its watcher will be invoked
+    //    ex1.attr1 = "other value";
+
+</script>
+<body>
+
+</body>
+</html>

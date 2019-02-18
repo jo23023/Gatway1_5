@@ -1,0 +1,37 @@
+{
+    "method": "getEventListMix",
+    "callid": 1403163650062,
+    "result":
+    [
+        {
+            "source": {
+                "name": "门磁",
+                "fullmodelno": "JSW-GateMaglock-0001",
+                "id": "11",
+                "action": "OpenClose",
+                "value": "Open"
+            },
+            "t": 1407124567
+        },
+        {
+            "source": {
+                "name": "门磁",
+                "fullmodelno": "JSW-GateMaglock-0001",
+                "id": "11",
+                "value": "Open",
+                "action": "OpenClose"
+            },
+            "t": 1407124572
+        },
+        {
+            "source": {
+                "name": "门磁",
+                "fullmodelno": "JSW-GateMaglock-0001",
+                "id": "11",
+                "action": "OpenClose",
+                "value": "Open"
+            },
+            "t": 1407124578
+        }
+    ]
+}

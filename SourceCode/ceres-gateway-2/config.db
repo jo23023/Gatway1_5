@@ -1,0 +1,37 @@
+-- Persistent Data
+local multiRefObjects = {
+
+} -- multiRefObjects
+local obj1 = {
+	["setting"] = {
+		["ntpserver"] = true;
+		["staticip"] = true;
+		["daylight"] = true;
+		["wifiPassword"] = "";
+		["receiver"] = "";
+		["wifiapsetup"] = {};
+		["timesetup"] = {};
+		["message"] = {
+                ["email_enable"] = false;
+                ["notification_enable"] = true;
+                ["receiver"] = "";
+                ["sms"] = {
+                	["sms_enable"] = false;
+                };
+        };
+		["prepareState"] = "Unlock";
+        ["remotekey"] = "Unlock";
+		["gatewaySiren"] = true;
+		["armDelayTime"] = "30";
+		["gatewayLedLight"] = "High";
+	};
+	["information"] = {
+		["frequency"] = "300";
+		["humidity"] = "0";
+		["temperature"] = "0";
+	};
+	["admin_password"] = "123456";
+	["luascript"] = "core.lua";
+	["gateway_app_version"] = "V1.0.3.AG";
+}
+return obj1
