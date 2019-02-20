@@ -810,7 +810,7 @@ void handle_DARequest(char* pdata)
 		   int err = pthread_create(&m_check_thread, NULL, thread_check_powerStatus, NULL);
 		   if(err)
 		   {	 
-			   DBG_PRINT("cloud_event_init thread_check_powerStatus error = %d	\n", err);
+			   DBG_PRINT(" thread_check_powerStatus error = %d	\n", err);
 			}
 		
 		   cloud_action_update_dev();

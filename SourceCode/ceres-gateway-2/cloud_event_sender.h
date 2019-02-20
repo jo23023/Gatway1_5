@@ -53,8 +53,8 @@ typedef enum
 // Function
 
 
-int 	cloud_event_init(char* pGwDID, char * pGWEntityID);	
-int  	cloud_event_start();
+int 	cloud_event_init();	
+int  	cloud_event_start(char* pGwDID, char* pGWEntityID);
 void  	cloud_event_stop();
 int 	cloud_event_addEevent(unsigned int did, int nType, int nStatus, char* pName);
 

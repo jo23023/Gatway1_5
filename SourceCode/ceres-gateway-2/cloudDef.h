@@ -22,9 +22,9 @@ char m_szMQTTHost[100];
 	#define EU_CLOUD_TOKEN  			"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJFbnRlcnByaXNlSWQiOiJGRFAwVDIxQi0yRERUVEw1Ty04TERQN1ZFMiJ9.G6O06dXCdJO75ydFov6paIEG91KnPQ-MFGbAA6tKaGE"
 	#define EU_MQTT_HOST     			"jcloud-backend-eu.eu-west-1.elasticbeanstalk.com"  
 	#define EU_ENTERPRISE_ID 			"FDP0T21B-2DDTTL5O-8LDP7VE2"
-	#define EU_SERVER_URL 				"https://jcloud-portal.jstone.sg/matthings/event/addEvent"
+	#define EU_SERVER_URL 				"https://jcloud.jstone.sg/matthings/event/addEvent"
 	#define EU_APP_ID 					"RWT3578Y-I2P8KZZH-HP54EJ9N"
-	#define EU_DA_REPORT_URL 			"https://jcloud-portal.jstone.sg/matthings/smarthome/requestReportStateDA"
+	#define EU_DA_REPORT_URL 			"https://jcloud.jstone.sg/matthings/smarthome/requestReportStateDA"
 	
 	
 // USA, JSW

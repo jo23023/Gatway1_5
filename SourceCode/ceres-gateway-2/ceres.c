@@ -2852,8 +2852,8 @@ void startCloud()
 	if( strlen(g_stUserParam.szEntryId) > 10 )
 	{
 		g_cloud_running =1;
+		cloud_event_start(gDID, g_stUserParam.szEntryId);	
 		cloud_action_start(&g_stUserParam);
-		cloud_event_start();
 	}
 
 }
@@ -3210,12 +3210,12 @@ printf("MCU update3!!!\n");
 
 	}
 
+	cloud_action_init();
+	cloud_event_init();
+
     //apple
     if(strlen(g_stUserParam.szEntryId) > 0)
 	{
-	    cloud_action_init();
-	    cloud_event_init(gDID, g_stUserParam.szEntryId);
-
 		printf("main startCloud \n");
 	    startCloud();
     }

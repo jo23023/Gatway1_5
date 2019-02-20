@@ -409,12 +409,9 @@ static curl_socket_t socket_callback(void *p,
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //Funtions
 
-int cloud_event_init(char* pGwDID, char* pGWEntityID) 
+int cloud_event_init() 
 {
-	DBG_PRINT("cloud_event_init DID = %s, Entity = %s\n", pGwDID, pGWEntityID );
-
-	strcpy(g_gwDID, pGwDID);
-	strcpy(g_szGWEntityID, pGWEntityID);
+	
 	m_lLastKeepAliveTime = getTimeTick();
 
     memset(m_szToken, 0, sizeof(m_szToken));
@@ -422,10 +419,29 @@ int cloud_event_init(char* pGwDID, char* pGWEntityID)
 	memset(m_szServerURL, 0, sizeof(m_szServerURL));
 	memset(m_szEnterprise, 0, sizeof(m_szEnterprise));
 	memset(m_szMQTTHost, 0, sizeof(m_szMQTTHost));
+	
 
-	char * pEUServer = strstr(g_gwDID, "WGAS");
+	return 1 ;
+}
+
+
+//------------------------------------------------------------------------------
+int  cloud_event_start(char* pGwDID, char* pGWEntityID)
+{
+	int err = 0;
+	DBG_PRINT("cloud_event_start DID = %s, Entity = %s\n", pGwDID, pGWEntityID );
+
+	strcpy(g_gwDID, pGwDID);
+	strcpy(g_szGWEntityID, pGWEntityID);
+
+	DBG_PRINT(" cloud_event_start did = %s  \n", g_gwDID);
+	
+	//char * pEUServer = strstr(g_gwDID, "WGAS");
+	char * pEUServer = NULL;
+	pEUServer = strstr(g_gwDID, "WGXX");
     if(pEUServer)
     {
+    	DBG_PRINT(" cloud_event_start EU svr \n");
     	strcpy(m_szToken, EU_CLOUD_TOKEN);
 		strcpy(m_szAppID, EU_APP_ID);
 		strcpy(m_szServerURL, EU_SERVER_URL);
@@ -449,16 +465,6 @@ int cloud_event_init(char* pGwDID, char* pGWEntityID)
 		DBG_PRINT("Enterprise =  %s \n", m_szEnterprise);
 		DBG_PRINT("mqtt host =  %s \n", m_szMQTTHost);
 		
-	return 1 ;
-}
-
-
-//------------------------------------------------------------------------------
-int  cloud_event_start()
-{
-	int err = 0;
-
-	DBG_PRINT(" cloud_event_start \n");
 
 	m_bSendDataToCloud = true;
 	
@@ -480,6 +486,7 @@ void  cloud_event_stop()
 {
 
 	DBG_PRINT("####  cloud_event_stop \n");
+	
 	m_bSendDataToCloud = 0;
 
     if(m_send_thread)
