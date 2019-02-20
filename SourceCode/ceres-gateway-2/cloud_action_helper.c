@@ -1200,6 +1200,7 @@ void cloud_action_start(stUSER_parm* pParam)
 	DBG_PRINT(" start entry id = %s \n", m_stUserParam.szEntryId);
 	DBG_PRINT(" topic = %s \n",  g_szTopicAlexa);
 	DBG_PRINT(" DA topic = %s \n",  g_szTopicRvDA);
+	DBG_PRINT(" DA server topic = %s \n",  g_szTopicSenDA);
 
 }
 

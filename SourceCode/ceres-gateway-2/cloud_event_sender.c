@@ -421,17 +421,9 @@ int cloud_event_init(char* pGwDID, char* pGWEntityID)
 	memset(m_szAppID, 0, sizeof(m_szAppID));
 	memset(m_szServerURL, 0, sizeof(m_szServerURL));
 	memset(m_szEnterprise, 0, sizeof(m_szEnterprise));
-	memset(m_szToken, 0, sizeof(m_szServerURL));
-	
+	memset(m_szMQTTHost, 0, sizeof(m_szMQTTHost));
 
-	char m_szToken[200];
-	char m_szAppID[40];
-	char m_szServerURL[100];
-	char m_szEnterprise[40];
-	char m_szDAReportURL[100];
-	char m_szMQTTHost[100];
-
-	char * pEUServer = strstr(g_gwDID, "WGAN-");
+	char * pEUServer = strstr(g_gwDID, "WGAS");
     if(pEUServer)
     {
     	strcpy(m_szToken, EU_CLOUD_TOKEN);
@@ -439,7 +431,7 @@ int cloud_event_init(char* pGwDID, char* pGWEntityID)
 		strcpy(m_szServerURL, EU_SERVER_URL);
 		strcpy(m_szEnterprise, EU_ENTERPRISE_ID);
 		strcpy(m_szDAReportURL, EU_CLOUD_TOKEN);
-		strcpy(m_szMQTTHost, UA_MQTT_HOST);
+		strcpy(m_szMQTTHost, EU_MQTT_HOST);
     }
 	else
     {
@@ -450,7 +442,13 @@ int cloud_event_init(char* pGwDID, char* pGWEntityID)
 		strcpy(m_szDAReportURL, UA_CLOUD_TOKEN);
 		strcpy(m_szMQTTHost, UA_MQTT_HOST);
     }
-	
+
+		DBG_PRINT("token =  %s \n", m_szToken);
+		DBG_PRINT("APP id =  %s \n", m_szAppID);
+		DBG_PRINT("server url =  %s \n", m_szServerURL);
+		DBG_PRINT("Enterprise =  %s \n", m_szEnterprise);
+		DBG_PRINT("mqtt host =  %s \n", m_szMQTTHost);
+		
 	return 1 ;
 }
 
