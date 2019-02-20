@@ -136,7 +136,7 @@ void doCamRecord(struct camobject *pCam)
    if (nStreamIOType != SIO_TYPE_AUTH)
    {
 	   //printf("encrypt data\n");
-	   EncryptPacket(pCam, packet, nSize);			  // ? å?
+	   EncryptPacket(pCam, packet, nSize);			  // ?ï¿½ï¿½?
    }
 
    int nRet = PPPP_Write(pCam->session, CHANNEL_IOCTRL, (char *)packet, nSize);
@@ -332,7 +332,7 @@ int Camera_SendIOCtrl( struct camobject* cam, int nIOCtrlType,char *IOData,  int
     if (nStreamIOType != SIO_TYPE_AUTH)
     {
         printf("encrypt data\n");
-        EncryptPacket(cam, packet, nSize);             // ? å?
+        EncryptPacket(cam, packet, nSize);             // ?ï¿½ï¿½?
     }
  // }
 
@@ -409,7 +409,7 @@ int Camera_DoAuth( struct camobject *cam, char * IOData)
     if (nStreamIOType != SIO_TYPE_AUTH)
     {
         //printf("encrypt data\n");
-        EncryptPacket(cam, packet, nSize);             // ? å?
+        EncryptPacket(cam, packet, nSize);             // ?ï¿½ï¿½?
     }
  // }
 
@@ -824,14 +824,23 @@ void Camera_DoIOCtrl(struct camobject* cam,    uint8_t IOData[])
                 | (0xff & data[18]) << 16 | (0xff & data[19]) << 24;
 
         //newEvent(cam->did, TYPE_CAMERA, 0x01, 0);
-        ipc_motionEvent(cam->did);
+        if(eventType == SHC_ARM)
+		{
+		}else if(eventType == SHC_DISARM)
+		{
+		}else if(eventType == REC_BY_DOORKEY)
+		{
+		}else
+		{
+			ipc_motionEvent(cam->did);
+		}
 
 
     //  free(data);
 
         //LOG_DEBUG(g_log, "camIndex = %d, eventType = %d, eventTime = %d", camIndex,       eventType, eventTime);
 
-        int i = 0;
+//        int i = 0;
         //int num = SIZEOF_ARRAY(pCamera->pfnAlarmProc);
 
         //char msg[128] = { 0 };

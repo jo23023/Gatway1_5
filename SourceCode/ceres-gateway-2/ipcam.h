@@ -263,7 +263,69 @@ enum IOCTL_TYPE
   IOCTRL_TYPE_REMOVE_EVENT_RESP,
 
   IOCTRL_TYPE_UPGRADE_FIRMWARE_REQ,
-  IOCTRL_TYPE_UPGRADE_FIRMWARE_RESP = 0x6F
+  IOCTRL_TYPE_UPGRADE_FIRMWARE_RESP = 0x6F,
+  IOCTRL_TYPE_SET_RVDP_GATE_DOOR_REQ = 0x8E,
+  IOCTRL_TYPE_SET_RVDP_GATE_DOOR_RESP = 0x8F
 };
+
+//for ipcam
+enum
+{
+    REC_BY_MANUALLY = 0x00,
+    REC_BY_PIR = 0x01,
+    REC_BY_PIR_WITH_SOFTWARE = 0x02, //don't use
+    REC_BY_SOFTWARE = 0x03,
+    REC_BY_VOICE = 0x04,
+    REC_BY_VOICE_PIR = 0x05, //don't use
+    REC_BY_SOFTWAR_VOICE_TEMP_HUMIDITY = 0x06,   //don't use
+    REC_BY_TEMP_HUMDITY = 0x07,
+    REC_BY_TEMP_HUMIDITY_VOICE = 0x08,  //don't use
+    REC_BY_HUMIDITY  = 0x09,
+    REC_BY_TEMP = 0x0A,
+
+    REC_BUT_SD_FULL = 0x0B,
+    REC_BUT_SD_EMPTY = 0x0C,
+    REC_BUT_SD_BAD = 0x0D,
+    REC_BY_DOORKEY = 0x0E,
+    EVENT_ARM = 0x0F,
+    EVENT_DISARM=0x10,
+    REC_BY_EXT_SENSOR = 0x20,
+    // REC event reserve to 0x3F
+    DOORKEY_ANSWERING = 0x40,
+    // SHC local push event from 0x80
+    SHC_DISARM = 0x80,
+    SHC_ARM =0x81,
+	SHC_INEVITABILITY =0x82,
+};
+
+typedef struct
+{
+    UINT16 nYear;
+    UCHAR nMonth;
+    UCHAR nDay;
+    UCHAR nWday;
+    UCHAR nHour;
+    UCHAR nMinute;
+    UCHAR nSecond;
+} st_EvnetResDate;
+
+typedef struct
+{
+    UCHAR n_CAmID[4];
+    INT32 evtType;
+    st_EvnetResDate UTC_time;
+    INT32 UTC_sec;
+    UCHAR sensor_type;
+    UCHAR reserve[3];
+} event_notify_data;
+
+typedef struct
+{
+    UCHAR n_CAmID[4];
+    INT32 evtType;
+    st_EvnetResDate UTC_time;
+    INT32 UTC_sec;
+    INT32 RF_TAG_ID;
+} event_notify_data_2SHC;
 
 #endif

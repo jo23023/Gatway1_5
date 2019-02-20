@@ -7,7 +7,7 @@
 #include <errno.h>
 #include <pthread.h>
 #include <sys/time.h>
-#include "Jsw_rf_api.h"
+#include "jsw_rf_api.h"
 #include <cJSON.h>
 #include "jsw_protocol.h"
 #include "cloudDef.h"
