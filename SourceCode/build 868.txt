@@ -4,3 +4,4 @@
 
 /mkrootfs.sh 165 (optional)
 600k ¤~¬O¦³mcu
+test
