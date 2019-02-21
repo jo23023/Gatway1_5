@@ -804,6 +804,7 @@ void handle_DARequest(char* pdata)
 	}
 	else if(strcmp(pAction, "SYNC") == 0)
 	{
+	#ifdef DA_ENABLE
 		if(m_check_thread == NULL)
 		{		
 		    //check Each power status
@@ -820,6 +821,7 @@ void handle_DARequest(char* pdata)
 
 		}
 		ReportAllDeviceToDA();
+	#endif	
 	}
 
 }

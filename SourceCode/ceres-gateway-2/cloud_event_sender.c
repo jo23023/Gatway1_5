@@ -694,7 +694,7 @@ void sendKeepAliveToDA()
 	curl_easy_setopt(m_pcurl, CURLOPT_VERBOSE, 0L);
 	curl_easy_setopt(m_pcurl, CURLOPT_WRITEFUNCTION, write_callback);
 	curl_easy_setopt(m_pcurl, CURLOPT_SSL_VERIFYPEER, 0L);
-	curl_easy_setopt(m_pcurl, CURLOPT_URL, CLOUD_KEEPALIVE_URL);
+	curl_easy_setopt(m_pcurl, CURLOPT_URL, UA_KEEPALIVE_URL);
 	curl_easy_setopt(m_pcurl, CURLOPT_HEADERFUNCTION, header_this_callback );  
 	curl_easy_setopt(m_pcurl, CURLOPT_FOLLOWLOCATION, 0);
 	curl_easy_setopt(m_pcurl, CURLOPT_POST,1);
