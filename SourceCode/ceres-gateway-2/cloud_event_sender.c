@@ -436,9 +436,8 @@ int  cloud_event_start(char* pGwDID, char* pGWEntityID)
 
 	DBG_PRINT(" cloud_event_start did = %s  \n", g_gwDID);
 	
-	//char * pEUServer = strstr(g_gwDID, "WGAS");
 	char * pEUServer = NULL;
-	pEUServer = strstr(g_gwDID, "WGXX");
+	pEUServer = strstr(g_gwDID, "WGAS");
     if(pEUServer)
     {
     	DBG_PRINT(" cloud_event_start EU svr \n");
