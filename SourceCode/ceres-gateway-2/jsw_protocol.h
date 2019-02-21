@@ -7,7 +7,7 @@
 //Feature Macro
 #define DEF_FEATURE_MULTI_PUSH  1 //if defined, gateway will send out multi-language push string, or default push string
 
-#define GATEWAY_VERSION 173
+#define GATEWAY_VERSION 174
 
 #define DBVERSION 0x10
 #define MAXDEVICENUM 48
