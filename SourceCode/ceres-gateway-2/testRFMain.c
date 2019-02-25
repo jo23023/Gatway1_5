@@ -628,43 +628,49 @@ void mcuCallBack(void *data){
 		{
 			if ( (ptr->Status[0] == RE_SMOKE_TRIGGERED) || (ptr->Status[0] == RE_SMOKE_OVERHEAT) )
 			{
-				if ( g_smokeOn ==0)
+				if (g_smokeOn == 0)
 				{
-				    //no smoke alarm again in 30 seconds
-				    int lasttime = time(NULL);
-				    if( ((lasttime - g_smokeOnLastTime) <= 30) && ((lasttime - g_smokeOnLastTime) >= 0) )
-                        return;
-				    g_smokeOnLastTime = lasttime;
-
-					//printf("Smoke triggered g_sirenstate = %d\n", g_sirenstate);
-					istrigger = 1;
 					g_smokeOn = 1;
-					newEvent(ptr->DeviceID, ptr->DeviceType,  status, istrigger );
-					save_event_first = 1;
-					triggerAlarm(1, 1);
-					//set timer to close it
 					if (smoke_t != 0)
 					{
 						makeTimer( &smoke_t, 0, 0);
 						smoke_t = 0;
 					}
 					makeTimer( &smoke_t, 30/*g_setting.gwprop.duration*/, 0);
-
-					if (dev != NULL)
-					 {
-#ifdef DEF_FEATURE_MULTI_PUSH
-                        char msg2[256];
-                        get_push_string(msg2, STR_ID_ALARM);
-                        sprintf( msg, msg2, dev->name, dev->location, g_setting.gwprop.name);
-#else
-                        sprintf(msg, STRING_TRIGGER_ALARM, dev->name, dev->location, gDID );
-#endif
-						 if (strlen(msg) != 0)
-							pushnotification(NT_TRIGGER, msg, STR_ID_ALARM);//trigger
-					 }
 				}
 				else
 					return; //filter out.
+
+				if(checkDevFlag(ptr->DeviceID))
+				{
+					//no smoke alarm again in 30 seconds
+					int lasttime = time(NULL);
+					if( ((lasttime - g_smokeOnLastTime) <= 30) && ((lasttime - g_smokeOnLastTime) >= 0) )
+						return;
+					g_smokeOnLastTime = lasttime;
+
+					//printf("Smoke triggered g_sirenstate = %d\n", g_sirenstate);
+					istrigger = 1;
+					newEvent(ptr->DeviceID, ptr->DeviceType,  status, istrigger );
+					save_event_first = 1;
+					triggerAlarm(1, 1);
+
+					if (dev != NULL)
+					{
+#ifdef DEF_FEATURE_MULTI_PUSH
+						char msg2[256];
+						get_push_string(msg2, STR_ID_ALARM);
+						sprintf( msg, msg2, dev->name, dev->location, g_setting.gwprop.name);
+#else
+sprintf(msg, STRING_TRIGGER_ALARM, dev->name, dev->location, gDID );
+#endif
+						if (strlen(msg) != 0)
+							pushnotification(NT_TRIGGER, msg, STR_ID_ALARM);//trigger
+					}
+				}
+
+				if(dev)
+					startScenario(dev->did, status);
 			}
 
 		}

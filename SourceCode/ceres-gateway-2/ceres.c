@@ -1982,7 +1982,7 @@ void *ping_hinet_thread_routine(void *arg)
 		}
 		last_network_detect = g_network_detect;
 #endif
-        usleep(5*1000*1000);
+        usleep(10*1000*1000);
 	}
 
 	pthread_exit(0);

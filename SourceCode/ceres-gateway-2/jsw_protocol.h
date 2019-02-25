@@ -321,6 +321,12 @@ typedef struct _jswproto_hdr
 	//unsigned short ext;
 }jswhdr;
 
+#define JSWDEV_FLAG_ARM                     0x01
+#define JSWDEV_FLAG_PARTARM                 0x02
+#define JSWDEV_FLAG_PANIC                   0x04
+#define JSWDEV_FLAG_RECORD                  0x08
+#define JSWDEV_FLAG_DISABLE_ENTRY_DELAY     0x10
+
 //payload
 typedef struct _jswproto_devtree
 {

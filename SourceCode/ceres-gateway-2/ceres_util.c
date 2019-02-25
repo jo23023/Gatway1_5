@@ -217,6 +217,18 @@ void gcm_send_event_list(const char* text) {
 
     res = curl_easy_perform(gCurl);
 
+    if(g_selftest_flag > 0)
+    {
+        long response_code;
+        curl_easy_getinfo(gCurl, CURLINFO_RESPONSE_CODE, &response_code);
+printf("==== CURLINFO_RESPONSE_CODE=%lu\n", response_code);
+        SetRunningLog_str_int("CURLINFO_RESPONSE_CODE=", (int)response_code);
+        double dl;
+        curl_easy_getinfo(gCurl, CURLINFO_SIZE_DOWNLOAD, &dl);
+printf("==== CURLINFO_SIZE_DOWNLOAD=%lf\n", dl);
+        SetRunningLog_str_int("CURLINFO_SIZE_DOWNLOAD=", (int)dl);
+    }
+
     curl_free(newText);
 
     if(res != CURLE_OK)

@@ -1923,12 +1923,12 @@ void newDevFromMcu(unsigned int id, char type)
         devlist[devcount].status = 0;
 
 	//need to add for both source and target
-	if( (type != TYPE_DOORCHIME) && (type != TYPE_BUTTON) ) //Doorchime and Button Default are not including in arm event.
-        devlist[devcount].flag = devlist[devcount].flag | 0x01;
-	if( (type != TYPE_PIR) && (type != TYPE_DOORCHIME) && (type != TYPE_BUTTON) ) //PIR, Doorchime and Button Default are not including in part arm event.
-		devlist[devcount].flag = devlist[devcount].flag | 0x02;
+	if( (type != TYPE_DOORCHIME) && (type != TYPE_BUTTON) && (type != TYPE_SMOKE) ) //Doorchime and Button Default are not including in arm event.
+		devlist[devcount].flag = devlist[devcount].flag | JSWDEV_FLAG_ARM; //0x01;
+	if( (type != TYPE_PIR) && (type != TYPE_DOORCHIME) && (type != TYPE_BUTTON) && (type != TYPE_SMOKE) ) //PIR, Doorchime and Button Default are not including in part arm event.
+		devlist[devcount].flag = devlist[devcount].flag | JSWDEV_FLAG_PARTARM; //0x02;
 	if( (type != TYPE_DOORCHIME) && (type != TYPE_BUTTON) ) //Doorchime and Button Default are not including in panic event.
-        devlist[devcount].flag = devlist[devcount].flag | 0x04;
+		devlist[devcount].flag = devlist[devcount].flag | JSWDEV_FLAG_PANIC; //0x04;
 
 	// Jeff define for set default vibration to middle=4
 	if(devlist[devcount].model == TYPE_VIBRATION)
@@ -2038,10 +2038,11 @@ void addCamera(jswdev *dev)
     char *cc = strstr(gDID, "WGAA-");
     if(cc)
     {//exclude arm table/part-arm table
-        devlist[devcount].flag =( devlist[devcount].flag | 0x08 | 0x04); // rec+panic group
+    	devlist[devcount].flag =( devlist[devcount].flag | JSWDEV_FLAG_RECORD | JSWDEV_FLAG_PANIC); //0x08 | 0x04); // rec+panic group
     }else
     {//original
-        devlist[devcount].flag =( devlist[devcount].flag | 0x08 | 0x04 | 0x02 | 0x01); // rec+panic+paarm+arm group
+    	devlist[devcount].flag =( devlist[devcount].flag | JSWDEV_FLAG_RECORD | JSWDEV_FLAG_PANIC | JSWDEV_FLAG_PARTARM |
+    			JSWDEV_FLAG_ARM); //0x08 | 0x04 | 0x02 | 0x01); // rec+panic+paarm+arm group
     }
 
 	addsource(max);
@@ -3035,7 +3036,7 @@ void clear_all_smoke_state()
     int i;
     for(i=0;i<devcount;i++)
     {
-        if( (devlist[i].model != TYPE_SMOKE) && (devlist[i].model != TYPE_WATERLEVEL) )
+    	if( (devlist[i].model != TYPE_SMOKE) && (devlist[i].model != TYPE_WATERLEVEL) && (devlist[i].model != TYPE_VIBRATION) )
             continue;
         devlist[i].status = 0;
     }
@@ -3271,6 +3272,8 @@ void systemDisarm2()
 
 	g_armstate = st_disarm;
 	g_AlarmState = ALARM_STATE_NO_ALARM;
+	g_smokeOn = 0;
+	g_smokeOnLastTime = 0;
 
 	printf("system disarm 2\n");
 	//stopAlarm();
@@ -3340,21 +3343,35 @@ void stopExitDelay()
 
 void entryDelay(unsigned int deviceDID)
 {
-	printf("======================entryDelay(%d)\n",deviceDID);
-	if (g_setting.gwprop.entrydelay >0)
-	{
-		entrydelayState = g_armstate;
+	//printf("======================entryDelay(%d)\n",deviceDID);
 
-		g_armstate = st_entrydelay;
-		g_EntryDelay_parm.avtive_time = time(0) +  g_setting.gwprop.entrydelay -1;
-		printf("start Entry delay... until(%ld) by[%ld]\n",(long)g_EntryDelay_parm.avtive_time,deviceDID);
-		g_EntryDelay_parm.deviceID= deviceDID;
+	jswdev *dev = getDevbydid(deviceDID);
+	if(!dev)
+        return;
 
+    if((dev->flag & JSWDEV_FLAG_DISABLE_ENTRY_DELAY) == JSWDEV_FLAG_DISABLE_ENTRY_DELAY)
+    {
+        printf("======================Disable entryDelay(%d)\n", deviceDID);
+        triggerAlarm(0, 0);
+    }else
+    {
+        printf("======================Enable entryDelay(%d)\n", deviceDID);
 
-		makeTimer( &entrydelay_t, g_setting.gwprop.entrydelay, 0);
-		sendCmdtoClient(CM_ENTRYDELAY, 0, 1, sizeof(stEntryDelay_parm),(char*)&g_EntryDelay_parm) ;
-	}else
-		triggerAlarm(0, 0);
+        if (g_setting.gwprop.entrydelay >0)
+        {
+            entrydelayState = g_armstate;
+
+            g_armstate = st_entrydelay;
+            g_EntryDelay_parm.avtive_time = time(0) +  g_setting.gwprop.entrydelay -1;
+            printf("start Entry delay... until(%ld) by[%ld]\n",(long)g_EntryDelay_parm.avtive_time,deviceDID);
+            g_EntryDelay_parm.deviceID= deviceDID;
+
+            printf("start Entry delay...\n");
+            makeTimer( &entrydelay_t, g_setting.gwprop.entrydelay, 0);
+            sendCmdtoClient(CM_ENTRYDELAY, 0, 1, sizeof(stEntryDelay_parm),(char*)&g_EntryDelay_parm) ;
+        }else
+            triggerAlarm(0, 0);
+    }
 }
 
 void stopEntryDelay()
@@ -3386,13 +3403,13 @@ int checkDevFlag(unsigned int did)
 
 	    if (check_state == st_arm)//arm
 		{
-			if ( ( devlist[x].flag & 0x01) == 0x01 )
+	    	if ( ( devlist[x].flag & JSWDEV_FLAG_ARM) == JSWDEV_FLAG_ARM) //0x01 )
 				return 1;
 			else
 				return 0;
 		}else if (check_state == st_partarm)//part arm
 		{
-			if ( ( devlist[x].flag & 0x02) == 0x02 )
+			if ( ( devlist[x].flag & JSWDEV_FLAG_PARTARM) == JSWDEV_FLAG_PARTARM) //0x02 )
 				return 1;
 			else
 				return 0;
@@ -3663,12 +3680,12 @@ void panic()// 0 = keyfob ,  1 = app,  2 = keypad.
 		{
 			if ( devlist[x].model == TYPE_CAMERA )
 			{
-				if ( ( devlist[x].flag & 0x04) == 0x04 )
+				if ( ( devlist[x].flag & JSWDEV_FLAG_PANIC) == JSWDEV_FLAG_PANIC) //0x04 )
 					doRec(devlist[x].did);
 			}
 			else
 			{
-				if ( ( devlist[x].flag & 0x04) == 0x04 )
+				if ( ( devlist[x].flag & JSWDEV_FLAG_PANIC) == JSWDEV_FLAG_PANIC) //0x04 )
 				{
 					if ( devlist[x].model == TYPE_POWER_ADAPTER  )
 					{
@@ -4550,10 +4567,14 @@ void startScenario(unsigned int  id, char status)
 	int sirenOn = 0;
 	int doorchime_track = 0x00;
 
+    dev = getDevbydid(id);
+    if(dev == NULL)
+        return;
+
 	// Jeff define reject Scenario check in NOT DISARM
 	if (g_armstate != st_disarm )
 	{//arm or part-arm
-	    if(strstr(gDID, "WGNF-") || strstr(gDID, "WGMT-"))
+		if(strstr(gDID, "WGNF-") || strstr(gDID, "WGMT-") || (dev->model == TYPE_SMOKE) )
 	    {//allow scenario
 	    }else
 	    {//not allow scenario
