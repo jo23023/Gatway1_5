@@ -20,7 +20,7 @@ bool m_bSendDataToCloud = false;
 pthread_t m_send_thread;
 pthread_t m_check_thread;
 
-bool m_bStartDA = false;
+bool g_bEnableDA = false;
 
 
 CHAR g_gwDID[32] = { 0 };
@@ -447,6 +447,7 @@ int  cloud_event_start(char* pGwDID, char* pGWEntityID)
 		strcpy(m_szEnterprise, EU_ENTERPRISE_ID);
 		strcpy(m_szDAReportURL, EU_CLOUD_TOKEN);
 		strcpy(m_szMQTTHost, EU_MQTT_HOST);
+		g_bEnableDA = false;
     }
 	else
     {
@@ -456,6 +457,7 @@ int  cloud_event_start(char* pGwDID, char* pGWEntityID)
 		strcpy(m_szEnterprise, UA_ENTERPRISE_ID);
 		strcpy(m_szDAReportURL, UA_CLOUD_TOKEN);
 		strcpy(m_szMQTTHost, UA_MQTT_HOST);
+		g_bEnableDA = true;
     }
 
 		DBG_PRINT("token =  %s \n", m_szToken);

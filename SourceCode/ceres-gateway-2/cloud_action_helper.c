@@ -42,6 +42,8 @@ stUSER_parm m_stUserParam;
 
 extern CHAR g_gwDID[32];
 extern struct googleSetting g_stDAParam;
+extern bool g_bEnableDA;
+
 
 int   m_nSyncID = 0;
 char  m_deviceAry[10][32];
@@ -804,7 +806,6 @@ void handle_DARequest(char* pdata)
 	}
 	else if(strcmp(pAction, "SYNC") == 0)
 	{
-	#ifdef DA_ENABLE
 		if(m_check_thread == NULL)
 		{		
 		    //check Each power status
@@ -821,7 +822,6 @@ void handle_DARequest(char* pdata)
 
 		}
 		ReportAllDeviceToDA();
-	#endif	
 	}
 
 }
@@ -971,7 +971,7 @@ void message_callback(struct mosquitto *mosq, void *obj,
 		handle_action(message->payload);
 
 	}
-	else if (strcmp(message->topic, g_szTopicRvDA) == 0 )
+	else if (strcmp(message->topic, g_szTopicRvDA) == 0 && g_bEnableDA)
 	{
 		DBG_PRINT(" Match event action topic = %s\n", 	message->topic);
 		handle_DARequest(message->payload);
@@ -1123,9 +1123,7 @@ int cloud_action_init()
 	DBG_PRINT("cloud_action_init \n");
 
 	memset(&m_stUserParam, 0, sizeof(m_stUserParam));
-
 	
-
 	return 0;
 }
 

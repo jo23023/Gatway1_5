@@ -17,8 +17,6 @@ char m_szEnterprise[40];
 char m_szDAReportURL[100];
 char m_szMQTTHost[100];
 
-#define DA_ENABLE				0
-
 //EU cloud Server
 
 	#define EU_APP_ID 					"RWT3578Y-I2P8KZZH-HP54EJ9N"
